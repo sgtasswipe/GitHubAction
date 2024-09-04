@@ -1,0 +1,35 @@
+name: simple-2-jobs
+
+on: [push]
+
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo a string
+        run: echo "Hello, World!"
+      - name: multiline command
+        run: | 
+         node -v
+          npm -v
+          mvn -v
+  run-shell-command-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: python command
+        run: | 
+          import platform
+          print(platform.processor())
+        shell: python
+  run-windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: windows command
+        run: |
+          echo %PROCESSOR_ARCHITECTURE%
+          echo %PROCESSOR_IDENTIFIER%
+          echo %PROCESSOR_LEVEL%
+          echo %PROCESSOR_REVISION%
+      - name: Directory Bash
+        run: pwd
+        shell: bash
